@@ -1,14 +1,6 @@
 import React from 'react';
 import { fetchProductsByCategory, fetchCategories } from '@/lib/api';
-import ProductList from '@/app/category/[slug]/productList';
-
-type Product = {
-  id: number;
-  name: string;
-  price: string;
-  description: string;
-  images: { src: string }[];
-};
+import ProductList from '@/components/productList';
 
 interface CategoryPageProps {
   params: {
@@ -24,12 +16,17 @@ type Category = {
     image: { src: string } | null;
   };
 
-export async function generateStaticParams() {
-  const categories: Category[] = await fetchCategories();
-  return categories.map((category: Category) => ({
-    slug: category.slug,
-  }));
-}
+  export async function generateStaticParams() {
+    const categories: Category[] = await fetchCategories();
+
+    console.log("Categories fetched for static paths:", categories);
+
+    return categories.map((category: Category) => (
+      {slug: category.slug,}
+    ));
+
+  }
+
 
 const CategoryPage = async ({ params }: CategoryPageProps) => {
   const { slug } = params;

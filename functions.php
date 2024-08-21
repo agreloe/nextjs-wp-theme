@@ -8,21 +8,21 @@ function my_nextjs_theme_setup() {
 add_action('after_setup_theme', 'my_nextjs_theme_setup');
 
 function my_nextjs_theme_assets() {
-    // Enqueue the Next.js app's main JavaScript file
+    // Enqueue the main CSS file (adjust the path if necessary)
+    wp_enqueue_style(
+        'nextjs-style',
+        get_template_directory_uri() . '/.next/static/css/main.css',
+        array(),
+        null
+    );
+
+    // Enqueue the main JavaScript file (adjust the path if necessary)
     wp_enqueue_script(
         'nextjs-app',
         get_template_directory_uri() . '/.next/static/chunks/main.js',
         array(),
         null,
         true
-    );
-
-    // Enqueue the Next.js app's main CSS file
-    wp_enqueue_style(
-        'nextjs-style',
-        get_template_directory_uri() . '/.next/static/css/main.css',
-        array(),
-        null
     );
 }
 add_action('wp_enqueue_scripts', 'my_nextjs_theme_assets');
