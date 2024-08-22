@@ -6,6 +6,7 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'shop.agreloe.fun',
             port: '',
+            pathname: '/wp-content/uploads/**',
           },
         ],
       },
