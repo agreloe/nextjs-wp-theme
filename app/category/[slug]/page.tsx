@@ -18,13 +18,9 @@ type Category = {
 
   export async function generateStaticParams() {
     const categories: Category[] = await fetchCategories();
-
-    console.log("Categories fetched for static paths:", categories);
-
-    return categories.map((category: Category) => (
-      {slug: category.slug,}
-    ));
-
+    return categories.map((category: Category) => ({
+      slug: category.slug,
+    }));
   }
 
 
